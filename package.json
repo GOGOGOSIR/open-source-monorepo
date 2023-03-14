@@ -6,6 +6,7 @@
   "license": "ISC",
   "keywords": [],
   "scripts": {
+    "cz": "git-cz",
     "build": "pnpm -r --filter './packages/*' run build"
   },
   "devDependencies": {
@@ -26,6 +27,11 @@
     "picocolors": "^1.0.0",
     "prompts": "^2.4.2",
     "semver": "^7.3.8"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   },
   "lint-staged": {
     "packages/**/*.{js,cjs,mjs,jsx,vue,ts,tsx,cts,mts}": [
