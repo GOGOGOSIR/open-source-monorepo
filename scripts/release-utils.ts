@@ -216,3 +216,21 @@ export function updateVersion(pkgPath: string, version: string): void {
   pkg.version = version
   writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`)
 }
+
+export async function getActiveVersion(pkgName: string): Promise<string> {
+  return (await run('npm', ['info', pkgName, 'version'], { stdio: 'pipe' }))
+    .stdout
+}
+
+export async function publishPackage(
+  pkdDir: string,
+  tag?: string,
+): Promise<void> {
+  const publicArgs = ['publish', '--access', 'public']
+  if (tag)
+    publicArgs.push('--tag', tag)
+
+  await runIfNotDry('npm', publicArgs, {
+    cwd: pkdDir,
+  })
+}
