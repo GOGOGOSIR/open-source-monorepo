@@ -13,15 +13,16 @@ async function main() {
   if (!tag)
     throw new Error('No tag specified')
 
-  let pkgName = 'vite'
+  let pkgName = ''
   let version
 
-  if (tag.includes('@'))
-    [pkgName, version] = tag.split('@')
-  else version = tag
+  if (!tag.includes('@')) {
+    throw new Error(
+      'tag not includes @',
+    )
+  }
 
-  if (version.startsWith('v'))
-    version = version.slice(1)
+  [pkgName, version] = tag.split('@')
 
   const { currentVersion, pkgDir } = getPackageInfo(pkgName)
   if (currentVersion !== version) {
