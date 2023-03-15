@@ -1,0 +1,26 @@
+name: Add GitHub Release Tag
+
+on:
+  push:
+    tags:
+      - '@eric-wan/*' # Push events to matching @eric-wan/*, i.e. @eric-wan/(use|tools)@1.0.0
+
+# $GITHUB_REF_NAME - https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables
+
+jobs:
+  release:
+    if: github.repository == 'GOGOGOSIR/open-source-monorepo'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Create Release for Tag
+        id: release_tag
+        uses: yyx990803/release-tag@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          body: |
+            Please refer to [CHANGELOG.md](https://github.com/GOGOGOSIR/open-source-monorepo/blob/${{ github.ref_name }}/packages/${ GITHUB_REF_NAME%@* }/CHANGELOG.md) for details.
