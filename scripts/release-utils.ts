@@ -218,8 +218,12 @@ export function updateVersion(pkgPath: string, version: string): void {
 }
 
 export async function getActiveVersion(pkgName: string): Promise<string> {
-  return (await run('npm', ['info', pkgName, 'version'], { stdio: 'pipe' }))
-    .stdout
+  try {
+    return (await run('npm', ['info', pkgName, 'version'], { stdio: 'pipe' }))
+      .stdout
+  } catch {
+    return ''
+  }
 }
 
 export async function publishPackage(

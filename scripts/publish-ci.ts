@@ -16,8 +16,8 @@ async function main() {
 
 
   const version = tag.replace(/@eric-wan\/.*@/g, '')
-  const reg = new RegExp('@'+ version, 'g')
-  const pkgName = tag.replace(reg, '')
+  const versionReg = new RegExp('@'+ version, 'g')
+  const pkgName = tag.replace(versionReg, '')
 
   const { currentVersion, pkgDir } = getPackageInfo(pkgName)
   if (currentVersion !== version) {
@@ -42,7 +42,7 @@ async function main() {
     ? 'beta'
     : version.includes('alpha')
       ? 'alpha'
-      : semver.lt(currentVersion, activeVersion)
+      : activeVersion && semver.lt(currentVersion, activeVersion)
         ? 'previous'
         : undefined
   await publishPackage(pkgDir, releaseTag)
