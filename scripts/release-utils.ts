@@ -22,7 +22,7 @@ interface VersionChoice {
 
 const pkgPrefix = '@eric-wan'
 
-function getPkgDirName(pkgName: string) {
+export function getPkgDirName(pkgName: string) {
   return pkgName.split(pkgPrefix)[1]
 }
 

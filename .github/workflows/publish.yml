@@ -31,6 +31,6 @@ jobs:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
 
       - name: Publish package
-        run: pnpm run ci-publish ${{ github.ref_name }} # github.ref_name my branch
+        run: pnpm run ci-publish ${{ github.ref_name }} # refs/tag/tagName 的 tagName
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

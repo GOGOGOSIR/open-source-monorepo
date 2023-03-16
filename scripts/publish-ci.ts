@@ -4,6 +4,7 @@ import {
   getActiveVersion,
   getPackageInfo,
   publishPackage,
+  run,
   step,
 } from './release-utils'
 
@@ -32,6 +33,15 @@ async function main() {
   }
 
   const activeVersion = await getActiveVersion(pkgName)
+
+  step(`Building ${pkgName} ...`)
+  const buildArgs = [
+    '--filter',
+    `./packages/${pkgDir}`,
+    'run',
+    'build',
+  ]
+  await run('pnpm', buildArgs)
 
   step('Publishing package...')
   const releaseTag = version.includes('beta')
