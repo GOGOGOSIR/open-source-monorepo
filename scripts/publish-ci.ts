@@ -14,16 +14,10 @@ async function main() {
   if (!tag)
     throw new Error('No tag specified')
 
-  let pkgName = ''
-  let version
 
-  if (!tag.includes('@')) {
-    throw new Error(
-      'tag not includes @',
-    )
-  }
-
-  [pkgName, version] = tag.split('@')
+  const version = tag.replace(/@eric-wan\/.*@/g, '')
+  const reg = new RegExp('@'+ version, 'g')
+  const pkgName = tag.replace(reg, '')
 
   const { currentVersion, pkgDir } = getPackageInfo(pkgName)
   if (currentVersion !== version) {
