@@ -1,6 +1,6 @@
 {
   "name": "@eric-wan/use",
-  "version": "0.0.0",
+  "version": "0.1.0-alpha.0",
   "description": "常用方法",
   "author": "eric",
   "sideEffects": false,
@@ -25,8 +25,7 @@
   "scripts": {
     "build": "esno scripts/build.ts"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/fs-extra": "9.0.13",
     "@vitejs/plugin-vue": "^3.2.0",
