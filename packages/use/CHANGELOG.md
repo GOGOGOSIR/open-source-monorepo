@@ -1,3 +1,12 @@
+# [0.1.0-alpha.7](https://github.com/GOGOGOSIR/open-source-monorepo/compare/@eric-wan/use@0.1.0-alpha.6...@eric-wan/use@0.1.0-alpha.7) (2023-03-19)
+
+
+### Features
+
+* **@eric-wan/use:** add constant ([3a528d0](https://github.com/GOGOGOSIR/open-source-monorepo/commit/3a528d066b0f888e5e511b3b5c32052af14b88c1))
+
+
+
 # [0.1.0-alpha.6](https://github.com/GOGOGOSIR/open-source-monorepo/compare/@eric-wan/use@0.1.0-alpha.5...@eric-wan/use@0.1.0-alpha.6) (2023-03-16)
 
 
