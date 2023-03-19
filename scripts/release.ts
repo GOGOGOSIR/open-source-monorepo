@@ -83,31 +83,31 @@ async function main(): Promise<void> {
   await run('npx', changelogArgs, { cwd: pkgDir })
 
   // 看是否有记录为提交，如果有，提交并打上tag
-  const { stdout } = await run('git', ['diff'], { stdio: 'pipe' })
-  if (stdout) {
-    step('\nCommitting changes...')
-    await runIfNotDry('git', ['add', '-A'])
-    await runIfNotDry('git', ['commit', '-m', `release: ${tag}`])
-    await runIfNotDry('git', ['tag', tag])
-  }
-  else {
-    console.log('No changes to commit.')
-  }
+  // const { stdout } = await run('git', ['diff'], { stdio: 'pipe' })
+  // if (stdout) {
+  //   step('\nCommitting changes...')
+  //   await runIfNotDry('git', ['add', '-A'])
+  //   await runIfNotDry('git', ['commit', '-m', `release: ${tag}`])
+  //   await runIfNotDry('git', ['tag', tag])
+  // }
+  // else {
+  //   console.log('No changes to commit.')
+  // }
 
-  step('\nPushing to GitHub...')
-  await runIfNotDry('git', ['push', 'origin', `refs/tags/${tag}`])
-  await runIfNotDry('git', ['push'])
+  // step('\nPushing to GitHub...')
+  // await runIfNotDry('git', ['push', 'origin', `refs/tags/${tag}`])
+  // await runIfNotDry('git', ['push'])
 
-  if (isDryRun) {
-    console.log('\nDry run finished - run git diff to see package changes.')
-  }
-  else {
-    console.log(
-      colors.green(
-        '\nPushed, publishing should starts shortly on CI.\nactions workflows publish.yml',
-      ),
-    )
-  }
+  // if (isDryRun) {
+  //   console.log('\nDry run finished - run git diff to see package changes.')
+  // }
+  // else {
+  //   console.log(
+  //     colors.green(
+  //       '\nPushed, publishing should starts shortly on CI.\nactions workflows publish.yml',
+  //     ),
+  //   )
+  // }
 
   console.log()
 }
