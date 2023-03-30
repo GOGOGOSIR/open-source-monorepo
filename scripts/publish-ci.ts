@@ -14,12 +14,11 @@ async function main() {
   if (!tag)
     throw new Error('No tag specified')
 
-
   const version = tag.replace(/@eric-wan\/.*@/g, '')
-  const versionReg = new RegExp('@'+ version, 'g')
+  const versionReg = new RegExp(`@${version}`, 'g')
   const pkgName = tag.replace(versionReg, '')
 
-  const { currentVersion, pkgDir } = getPackageInfo(pkgName)
+  const { currentVersion, pkgDir, pkgDirName } = getPackageInfo(pkgName)
   if (currentVersion !== version) {
     throw new Error(
       `Package version from tag "${version}" mismatches with current version "${currentVersion}"`,
@@ -31,7 +30,7 @@ async function main() {
   step(`Building ${pkgName} ...`)
   const buildArgs = [
     '--filter',
-    `./packages/${pkgDir}`,
+    `./packages/${pkgDirName}`,
     'run',
     'build',
   ]
