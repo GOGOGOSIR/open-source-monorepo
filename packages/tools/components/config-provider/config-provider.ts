@@ -1,7 +1,7 @@
 import { namespace } from '@config/constant'
 import { configNamespace } from '@utils/namespace'
 import { configProps } from '@utils/props'
-import { defineComponent, toRef, renderSlot } from 'vue'
+import { defineComponent, renderSlot, toRef } from 'vue'
 import type { PropType } from 'vue'
 import type { PropsOptions } from '~/props'
 
@@ -10,13 +10,13 @@ export default defineComponent({
   props: {
     props: {
       type: Object as PropType<PropsOptions>,
-      default: () => ({})
+      default: () => ({}),
     },
 
     namespace: {
       type: String,
-      default: namespace
-    }
+      default: namespace,
+    },
   },
 
   setup(props, { slots }) {
@@ -24,5 +24,5 @@ export default defineComponent({
     configNamespace(toRef(props, 'namespace'))
 
     return () => renderSlot(slots, 'default')
-  }
+  },
 })
