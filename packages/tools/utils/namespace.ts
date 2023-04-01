@@ -3,14 +3,14 @@ import { computed, inject, provide, unref } from 'vue'
 import type { App, ComputedRef, Ref } from 'vue'
 
 export const PROVIDED_NAMESPACE = '__pin-provided-namespace'
-export const globalNamespace = computed(() => 'pin')
+export const globalNamespace = 'pin'
 
 export function configNamespace(sourceNamespace: string | Ref<string>, app?: App) {
   if (app) {
     const namespace = computed(() => {
       const namespace = unref(sourceNamespace)
 
-      return namespace || globalNamespace.value
+      return namespace || globalNamespace
     })
 
     app.provide(PROVIDED_NAMESPACE, namespace)
@@ -18,7 +18,7 @@ export function configNamespace(sourceNamespace: string | Ref<string>, app?: App
   else {
     const upstreamNamespace = inject<ComputedRef<string> | null>(PROVIDED_NAMESPACE, null)
     const namespace = computed(() => {
-      return unref(sourceNamespace) || upstreamNamespace?.value || globalNamespace.value
+      return unref(sourceNamespace) || upstreamNamespace?.value || globalNamespace
     })
 
     provide(PROVIDED_NAMESPACE, namespace)
