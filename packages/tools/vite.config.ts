@@ -1,54 +1,56 @@
 import { resolve } from 'node:path'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import type { PluginOption } from 'vite'
 import { version } from './package.json'
-
-function initPlugins() {
-  const res: PluginOption[] = [
-    tsconfigPaths(),
-    dts({
-      outputDir: 'dist/types',
-    }),
-  ]
-
-  return res
-}
 
 export default defineConfig(() => {
   return {
     publicDir: false,
     clearScreen: false,
     define: {
-      __VERSION__: JSON.stringify(version),
+      __VERSION__: JSON.stringify(version)
     },
+
     build: {
-      outDir: 'dist',
+      minify: false,
       modulePreload: false,
-      minify: true,
       lib: {
-        entry: resolve(__dirname, 'core/index.ts'),
-        formats: ['es', 'cjs', 'iife'],
-        fileName: (format, entryName) => {
-          const fileNameMap = {
-            iife: `${entryName}.iife.js`,
-            cjs: `${entryName}.cjs`,
-            es: `${entryName}.mjs`,
-          }
-          return fileNameMap[format]
-        },
-        name: 'EricWanTools',
+        entry: resolve(__dirname, 'index.ts'),
+        name: 'PinosUi'
       },
       rollupOptions: {
-        output: {
-          globals: {
-            vue: 'Vue',
+        output: [
+          {
+            format: 'cjs',
+            preserveModules: true,
+            preserveModulesRoot: __dirname,
+            dir: 'dist/lib',
+            entryFileNames: '[name].cjs'
           },
-        },
-        external: ['vue'],
-      },
+          {
+            format: 'es',
+            preserveModules: true,
+            preserveModulesRoot: __dirname,
+            dir: 'dist/es',
+            entryFileNames: '[name].mjs'
+          }
+        ],
+        external: ['vue']
+      }
     },
-    plugins: initPlugins(),
+    plugins: [
+      vue(),
+      vueJsx(),
+      tsconfigPaths({
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.vue'],
+        loose: true
+      }),
+      dts({
+        outputDir: 'dist/types'
+      })
+    ]
   }
 })

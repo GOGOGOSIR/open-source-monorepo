@@ -19,7 +19,21 @@
     "noUncheckedIndexedAccess": true,
     "outDir": "dist",
     "paths": {
-      "@core/*": ["core/*"]
+      "@config/*": [
+        "config/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "~/*": [
+        "./*"
+      ],
+      "~types/*": [
+        "types/*"
+      ]
     },
     "removeComments": true,
     "resolveJsonModule": true,
@@ -28,17 +42,16 @@
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
-    "types": [
-      "vitest",
-      "vitest/globals"
-    ],
-    "useDefineForClassFields": true,
-    "useUnknownInCatchVariables": false
+    "useDefineForClassFields": true
   },
   "exclude": [],
   "include": [
-    "core/**/*.ts",
-    "index.ts",
-    "scripts/*.ts"
+    "./*.ts",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "components/**/*.vue",
+    "scripts/*.ts",
+    "types/*.ts",
+    "utils/*.ts"
   ]
 }
