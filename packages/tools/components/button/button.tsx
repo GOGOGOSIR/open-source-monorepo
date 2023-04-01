@@ -1,5 +1,5 @@
-import { useProps, useNameHelper } from '@utils/mixins'
-import { defineComponent, computed } from 'vue'
+import { useNameHelper, useProps } from '@utils/mixins'
+import { computed, defineComponent } from 'vue'
 import { buttonProps } from './props'
 
 export default defineComponent({
@@ -7,12 +7,12 @@ export default defineComponent({
   props: buttonProps,
   setup(_props) {
     const props = useProps('Button', _props, {
-      text: '123'
+      text: '123',
     })
-    const bh = useNameHelper('button')
+    const nh = useNameHelper('button')
     const className = computed(() => {
       return {
-        [bh.b()]: true
+        [nh.b()]: true,
       }
     })
 
@@ -23,5 +23,5 @@ export default defineComponent({
         </button>
       )
     }
-  }
+  },
 })

@@ -1,11 +1,11 @@
 // refer to：https://github.com/vexip-ui/vexip-ui/blob/main/common/config
 
-import { computed, unref, inject, provide, reactive } from 'vue'
-import { validateType } from './common'
-import { mergeObject } from './merge-object'
+import { computed, inject, provide, reactive, unref } from 'vue'
+import type { App, ComputedRef } from 'vue'
 import type { PropsOptions } from '../props'
 import type { MaybeRef } from '../types/utils'
-import type { App, ComputedRef } from 'vue'
+import { validateType } from './common'
+import { mergeObject } from './merge-object'
 
 function isMergeType(target: any) {
   const map = ['Object', 'Array']
@@ -20,9 +20,10 @@ export function configProps<T>(props: MaybeRef<T>, app?: App) {
   if (app) {
     app.provide(
       PROVIDED_PROPS,
-      computed(() => unref(props))
+      computed(() => unref(props)),
     )
-  } else {
+  }
+  else {
     const defaultProvideProps = inject<ComputedRef<Record<string, any>> | null>(PROVIDED_PROPS, null)
 
     const providedProps = computed(() => {
@@ -39,14 +40,14 @@ export function configProps<T>(props: MaybeRef<T>, app?: App) {
 export function useProps<T extends Record<string, any>>(
   name: keyof PropsOptions,
   sourceProps: T,
-  defaultData: Partial<T> = {}
+  defaultData: Partial<T> = {},
 ) {
   const providedProps = inject<ComputedRef<Record<string, Partial<T>>> | null>(
     PROVIDED_PROPS,
-    null
+    null,
   )
 
-  const configProps = computed<Partial<T>>(() => {
+  const defaultConfigProps = computed<Partial<T>>(() => {
     return providedProps?.value?.[name] ?? {}
   })
 
@@ -58,7 +59,7 @@ export function useProps<T extends Record<string, any>>(
   keys.forEach((key) => {
     const defaultValue = defaultData[key] as any
     props[key] = computed(() => {
-      const providedValue = configProps.value[key]
+      const providedValue = defaultConfigProps.value[key]
 
       if (providedValue !== null && providedValue !== undefined) {
         if (isMergeType(defaultValue) && isMergeType(providedValue))
