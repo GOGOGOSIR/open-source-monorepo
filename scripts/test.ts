@@ -7,7 +7,7 @@ import {
 } from './release-utils'
 
 async function main() {
-  const pkgName = '@eric-wan/use'
+  const pkgName = '@eric-wan/tools'
 
   const { pkgDirName } = getPackageInfo(pkgName)
   console.log(pkgDirName)
