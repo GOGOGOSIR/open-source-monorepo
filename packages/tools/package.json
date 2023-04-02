@@ -32,7 +32,7 @@
     "vue": "^3.2.25"
   },
   "dependencies": {
-    "@eric-wan/use": "workspace:0.1.0-alpha.8"
+    "@eric-wan/use": "workspace:^*"
   },
   "devDependencies": {
     "@types/eslint": "^8.21.3",
