@@ -8,7 +8,7 @@ export default defineComponent({
   props: buttonProps,
   setup(_props) {
     const props = useProps('Button', _props, {
-      text: `123-${addSum(1, 2)}`,
+      text: `1232-${addSum(1, 2)}`,
     })
     const nh = useNameHelper('button')
     const className = computed(() => {
