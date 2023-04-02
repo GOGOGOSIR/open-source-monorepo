@@ -28,14 +28,14 @@ async function main() {
   const activeVersion = await getActiveVersion(pkgName)
 
   step(`Building ${pkgName} ...`)
-  if (['tools'].includes(pkgDirName)) {
-    await run('pnpm', [
-      '--filter',
-      './packages/use',
-      'run',
-      'build',
-    ])
-  }
+  // if (['tools'].includes(pkgDirName)) {
+  //   await run('pnpm', [
+  //     '--filter',
+  //     './packages/use',
+  //     'run',
+  //     'build',
+  //   ])
+  // }
   const buildArgs = [
     '--filter',
     `./packages/${pkgDirName}`,

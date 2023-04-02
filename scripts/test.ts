@@ -13,13 +13,13 @@ async function main() {
   console.log(pkgDirName)
 
   step(`Building ${pkgName} ...`)
-  const buildArgs1 = [
-    '--filter',
-    './packages/use',
-    'run',
-    'build',
-  ]
-  await run('pnpm', buildArgs1)
+  // const buildArgs1 = [
+  //   '--filter',
+  //   './packages/use',
+  //   'run',
+  //   'build',
+  // ]
+  // await run('pnpm', buildArgs1)
   const buildArgs = [
     '--filter',
     `./packages/${pkgDirName}`,
