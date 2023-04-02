@@ -1,3 +1,7 @@
+## [0.1.6](https://github.com/GOGOGOSIR/open-source-monorepo/compare/@eric-wan/tools@0.1.5...@eric-wan/tools@0.1.6) (2023-04-02)
+
+
+
 ## [0.1.5](https://github.com/GOGOGOSIR/open-source-monorepo/compare/@eric-wan/tools@0.1.4...@eric-wan/tools@0.1.5) (2023-04-02)
 
 
