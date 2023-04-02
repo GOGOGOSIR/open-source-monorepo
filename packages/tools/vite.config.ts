@@ -13,11 +13,11 @@ export default defineConfig(() => {
     define: {
       __VERSION__: JSON.stringify(version),
     },
-    resolve: {
-      alias: [
-        { find: '@eric-wan/use', replacement: resolve(__dirname, '../use/core') }
-      ]
-    },
+    // resolve: {
+    //   alias: [
+    //     { find: '@eric-wan/use', replacement: resolve(__dirname, '../use/core') }
+    //   ]
+    // },
     build: {
       minify: true,
       modulePreload: false,
