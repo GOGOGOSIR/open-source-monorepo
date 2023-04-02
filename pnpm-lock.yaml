@@ -48,6 +48,7 @@ importers:
 
   packages/tools:
     specifiers:
+      '@eric-wan/use': workspace:0.1.0-alpha.8
       '@types/eslint': ^8.21.3
       '@types/fs-extra': 9.0.13
       '@types/gulp': ^4.0.10
@@ -76,6 +77,8 @@ importers:
       vite-tsconfig-paths: ^3.5.2
       vitest: ^0.24.1
       vue: 3.2.40
+    dependencies:
+      '@eric-wan/use': link:../use
     devDependencies:
       '@types/eslint': 8.37.0
       '@types/fs-extra': 9.0.13

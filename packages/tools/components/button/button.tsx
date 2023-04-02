@@ -1,4 +1,5 @@
 import { useNameHelper, useProps } from '@utils/mixins'
+import { addSum } from '@eric-wan/use'
 import { computed, defineComponent } from 'vue'
 import { buttonProps } from './props'
 
@@ -7,7 +8,7 @@ export default defineComponent({
   props: buttonProps,
   setup(_props) {
     const props = useProps('Button', _props, {
-      text: '123',
+      text: `123${addSum(1, 2)}`,
     })
     const nh = useNameHelper('button')
     const className = computed(() => {

@@ -31,6 +31,9 @@
   "peerDependencies": {
     "vue": "^3.2.25"
   },
+  "dependencies": {
+    "@eric-wan/use": "workspace:0.1.0-alpha.8"
+  },
   "devDependencies": {
     "@types/eslint": "^8.21.3",
     "@types/fs-extra": "9.0.13",

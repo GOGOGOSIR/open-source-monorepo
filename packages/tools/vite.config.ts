@@ -11,15 +11,15 @@ export default defineConfig(() => {
     publicDir: false,
     clearScreen: false,
     define: {
-      __VERSION__: JSON.stringify(version)
+      __VERSION__: JSON.stringify(version),
     },
 
     build: {
-      minify: false,
+      minify: true,
       modulePreload: false,
       lib: {
         entry: resolve(__dirname, 'index.ts'),
-        name: 'PinosUi'
+        name: 'XX',
       },
       rollupOptions: {
         output: [
@@ -28,29 +28,29 @@ export default defineConfig(() => {
             preserveModules: true,
             preserveModulesRoot: __dirname,
             dir: 'dist/lib',
-            entryFileNames: '[name].cjs'
+            entryFileNames: '[name].cjs',
           },
           {
             format: 'es',
             preserveModules: true,
             preserveModulesRoot: __dirname,
             dir: 'dist/es',
-            entryFileNames: '[name].mjs'
-          }
+            entryFileNames: '[name].mjs',
+          },
         ],
-        external: ['vue']
-      }
+        external: ['vue'],
+      },
     },
     plugins: [
       vue(),
       vueJsx(),
       tsconfigPaths({
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.vue'],
-        loose: true
+        loose: true,
       }),
       dts({
-        outputDir: 'dist/types'
-      })
-    ]
+        outputDir: 'dist/types',
+      }),
+    ],
   }
 })
